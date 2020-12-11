@@ -22,9 +22,11 @@ export const ChatMessage: React.FC<IProps> = (props) => {
     messageClass = 'chatMessage_' + messageClass;
 
     return(
-        <div className={'chatMessage_con'}>
-            <div className={`${messageClass} chatMessage_msg`}>
-                <div className={'chatMessage_text'}>{text}</div>
+        <div className={`${messageClass} chatMessage_con`}>
+            <div className={`chatMessage_msg`}>
+                <div className={'chatMessage_text'}>
+                    {text}
+                </div>
             </div>
         </div>
     );

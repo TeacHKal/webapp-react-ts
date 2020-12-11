@@ -1,32 +1,35 @@
 .chatMessage {
   &_con {
     display: flex;
-    //align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+
+    max-width: 250px;
     flex-direction: column;
     width: auto;
-    height: 100%;
+    height: auto;
     border-radius: 15px;
     margin: 8px 0 8px 0;
     color: black;
     font-size: 20px;
+
   }
 
   &_msg {
     border-radius: 15px;
+
   }
   &_text {
+
     margin: 0 5px 2px 5px;
   }
   &_sent {
     background-color: #dcf8c6;
-
     align-self: flex-end;
   }
 
   &_received {
     background-color: #ece5dd;
-
     align-self: flex-start;
 
   }
