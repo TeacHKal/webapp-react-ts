@@ -1,0 +1,40 @@
+.chatMessage {
+  &_con {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    height: 100%;
+
+    background-color: #7f7f7f;
+    border-radius: 15px;
+    margin: 8px 0 8px 0;
+
+  }
+
+  &_msg {
+    //padding: 0 10px 0 20px;
+  }
+  &_text {
+    margin: 0 5px 2px 5px;
+  }
+  &_sent {
+    background-color: #008800;
+
+    //align-self: flex-end;
+  }
+
+  &_received {
+    background-color: #0074D9;
+    border-radius: 15px;
+    align-self: flex-start;
+
+  }
+
+}
+
+
+
+
+

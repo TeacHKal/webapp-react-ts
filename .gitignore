@@ -28,3 +28,4 @@ yarn-error.log*
 .idea/inspectionProfiles/Project_Default.xml
 .idea/codeStyles/codeStyleConfig.xml
 .idea/workspace.xml
+src/config/firebase/index.ts
