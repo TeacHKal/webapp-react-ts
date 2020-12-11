@@ -1,0 +1,24 @@
+.messageComposer {
+  &_con {
+    display: flex;
+    min-height: 40px;
+    background-color: #cccccc;
+    justify-content: center;
+    border-radius: inherit;
+
+    input {
+      margin: 5px;
+      padding: 5px;
+    }
+    button {
+      margin: 5px;
+      padding: 5px;
+    }
+  }
+
+}
+
+
+
+
+

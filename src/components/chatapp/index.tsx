@@ -5,8 +5,8 @@ import 'firebase/auth';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { firebaseConfig } from "../../config/firebase";
-import { ChatRoom } from "./chatRoom";
-import { SignIn } from "./signIn";
+import { ChatRoom } from "./components/chatRoom";
+import { SignIn } from "./components/signIn";
 import "./index.scss";
 
 firebase.initializeApp({ ...firebaseConfig })

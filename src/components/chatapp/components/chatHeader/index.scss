@@ -1,0 +1,33 @@
+.chatHeader {
+  &_con {
+    background-color: rgba(52, 183, 241, 0.7);
+    border-radius: 20px;
+    margin: 5px 5px 5px 5px;
+    min-height: 50px;
+    padding: 0 0 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_title {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    transform: translateX(10px);/*D element Width[if needed]*/
+    opacity: 100%;
+  }
+
+  &_options{
+    opacity: 100%;
+    padding: 0 10px 0 0;
+  }
+
+
+
+}
+
+
+
+
+
