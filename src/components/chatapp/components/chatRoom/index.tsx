@@ -10,22 +10,14 @@ import { MessageComposer } from "../messageComposer";
 
 const style={
     backgroundImage: `url(${backgroundImage})`
-
 }
 
 export const ChatRoom: React.FC = () => {
-    const auth = firebase.auth();
     const firestore = firebase.firestore();
     const messagesRef = firestore.collection('messages');
     const query = messagesRef.orderBy('createdAt').limit(30);
     const [messages] = useCollectionData(query, {idField: 'id'}); // Hook
-
-
-
-    const signOut = () => {
-        auth.signOut();
-    }
-
+    
     console.log('messages', messages)
     return (
         <div style={style} className={'chatRoom_con'}>

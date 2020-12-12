@@ -1,37 +1,46 @@
 .chatMessage {
   &_con {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    max-width: 250px;
     flex-direction: column;
-    width: auto;
-    height: auto;
-    border-radius: 15px;
-    margin: 8px 0 8px 0;
-    color: black;
-    font-size: 20px;
 
   }
 
   &_msg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+    max-width: 350px;
     border-radius: 15px;
-
+    margin: 5px 0 5px 0;
+    font-size: 20px;
   }
+
   &_text {
     overflow-wrap: anywhere;
     margin: 0 5px 2px 5px;
+    border-radius: 10px;
+    padding: 2px 5px;
   }
+
+  &_avatar {
+    align-self: flex-end;
+  }
+
   &_sent {
     background-color: #dcf8c6;
-    align-self: flex-end;
   }
 
   &_received {
     background-color: #ece5dd;
-    align-self: flex-start;
+  }
 
+  &_left {
+    align-self: flex-start;
+  }
+
+  &_right {
+    align-self: flex-end;
   }
 
 }
