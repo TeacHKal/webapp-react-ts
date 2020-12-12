@@ -15,6 +15,7 @@ export const MessageComposer: React.FC = () => {
     const sendMessage = async (e: any) => {
         e.preventDefault();
         if(inputMessage === "") return;
+
         // @ts-ignore
         const { uid, photoURL } = auth.currentUser;
         await messagesRef.add({
@@ -23,9 +24,8 @@ export const MessageComposer: React.FC = () => {
             uid,
             photoURL
         })
-        // @ts-ignore
+
         setInputMessage('');
-        //current.scrollIntoView({ behavior: 'smooth' });
     }
 
     const sendIconColor = () => {
