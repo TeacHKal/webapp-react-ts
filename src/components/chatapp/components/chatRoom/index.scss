@@ -8,19 +8,11 @@
     width: fit-content;
     border-radius: 15px;
     margin: 10px 0 10px 0;
-
+    overflow: auto;
 
   }
 
-  &_msgWin {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    width: 450px;
-    height: 600px;
-    border-radius: 10px;
-    padding: 3px 10px 5px 10px;
-  }
+
 
 
 }
