@@ -9,7 +9,7 @@
 
     input {
       display: flex;
-      width: -webkit-fill-available;
+      //width: -webkit-fill-available;
       margin: 5px;
       padding: 5px;
       border-radius: 10px;
@@ -23,7 +23,6 @@
   &_sendIcon {
     display: flex;
     align-items: center;
-    //justify-content: space-between;
   }
 
 }
