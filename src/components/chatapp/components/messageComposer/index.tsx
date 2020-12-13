@@ -35,7 +35,8 @@ export const MessageComposer: React.FC = () => {
 
     const onEnterKeyPress = (e: any) => {
         if(e.key === 'Enter'){
-            sendMessage(e);
+            const msgResponse = sendMessage(e);
+            console.log("msgResponse", msgResponse);
         }
     }
 

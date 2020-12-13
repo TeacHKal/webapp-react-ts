@@ -8,7 +8,7 @@ import './index.scss'
 export const ChatMsgWin: React.FC = () => {
     const firestore = firebase.firestore();
     const messagesRef = firestore.collection('messages');
-    const query = messagesRef.orderBy('createdAt').limit(30);
+    const query = messagesRef.orderBy('createdAt', 'desc').limit(30);
     const [messages] = useCollectionData(query, {idField: 'id'}); // Hook
 
     const msgBottomSpanRef = useRef<HTMLHeadingElement>(null);
@@ -16,10 +16,9 @@ export const ChatMsgWin: React.FC = () => {
     useEffect(() => {
         msgBottomSpanRef.current!.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
-
     const renderChatMessageWindow = () => {
         return(
-            <div className={'chatMsgWin_con'}>{messages && messages.map(msg => {
+            <div className={'chatMsgWin_con'}>{messages && messages.reverse().map(msg => {
                 // @ts-ignore
                 return <ChatMessage key={msg.id} message={msg}/>
                 })}
