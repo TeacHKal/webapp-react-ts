@@ -79,14 +79,14 @@ export const loadTodolist = () => (dispatch, getState) => {
 // });
 
 export const todolistItemAdd = (todo) => apiCallBegin({
-    url: "/todolist",
+    url,
     method: "post",
     data: todo,
     onSuccess: todolistAdd.type,
 });
 
 export const todolistItemDone = id => apiCallBegin({
-    url: "/todolist" + "/" + id,
+    url: url + "/" + id,
     method: "patch",
     data: { isComplete: true },
     onSuccess: todoComplete.type,

@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import firebase from "firebase";
 import { Avatar } from '../../../avatar';
 import './index.scss';
@@ -15,7 +15,7 @@ interface IMessage {
 }
 export const ChatMessage: React.FC<IProps> = (props) => {
 
-    const { text, uid, photoURL, createdAt } = props.message;
+    const { text, uid, photoURL } = props.message;
     const auth = firebase.auth();
 
 
