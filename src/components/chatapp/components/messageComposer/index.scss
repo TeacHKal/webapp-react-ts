@@ -1,11 +1,12 @@
 .messageComposer {
   &_con {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     min-height: 40px;
     background-color: #ece5dd;
     border-radius: 0  0 10px 10px;
-    padding: 0 15px 0 15px;
+
     flex-shrink: 0;
 
     input {
@@ -24,6 +25,14 @@
   &_sendIcon {
     display: flex;
     align-items: center;
+  }
+  &_messageComposer_sendingLinearProg{
+    background-color: #B6BCE2;
+  }
+  
+  &_comp {
+    display: flex;
+    padding: 0 15px 0 15px;
   }
 
 }

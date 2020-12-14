@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import SendIcon from '@material-ui/icons/Send';
-import {CircularProgress, TextField} from "@material-ui/core";
+import {CircularProgress, LinearProgress, TextField} from "@material-ui/core";
 import {filterBadWords} from '../../../../modules/filterBadWords';
 import  firebase from '../../../../modules/firebase';
 import './index.scss'
@@ -63,21 +63,26 @@ export const MessageComposer: React.FC = () => {
         );
     }
 
-    return(
+    return (
         <div className={'messageComposer_con'}>
-            <TextField
-                id="standard-multiline-flexible"
-                label="Message"
-                rowsMax="3"
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                placeholder={"Type a message..."}
-                onKeyPress={(e) => onEnterKeyPress(e)}
-                margin={'none'}
-                fullWidth={true}
-            />
-            <div className={'messageComposer_sendIcon'}>
-                { sendingMessage ? renderLoadingIcon() : renderSendIcon()}
+            <div className={'messageComposer_sendingLinearProg'}>
+                { sendingMessage ? <LinearProgress /> : ''}
+            </div>
+            <div className={'messageComposer_comp'}>
+                <TextField
+                    id="standard-multiline-flexible"
+                    label="Message"
+                    rowsMax="3"
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    placeholder={"Type a message..."}
+                    onKeyPress={(e) => onEnterKeyPress(e)}
+                    margin={'none'}
+                    fullWidth={true}
+                />
+                <div className={'messageComposer_sendIcon'}>
+                    {sendingMessage ? renderLoadingIcon() : renderSendIcon()}
+                </div>
             </div>
         </div>
     );
