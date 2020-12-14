@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import {ChatMessage} from "../chatMessage";
 import './index.scss';
 import firebase from '../../../../modules/firebase';
+import {CircularProgress, LinearProgress} from "@material-ui/core";
 
 export const ChatMsgWin: React.FC = () => {
     const messages = firebase.MessageArr();
@@ -9,11 +10,12 @@ export const ChatMsgWin: React.FC = () => {
     const msgBottomSpanRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-        msgBottomSpanRef.current!.scrollIntoView({ behavior: 'smooth' });
+        msgBottomSpanRef.current && msgBottomSpanRef.current!.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
     const renderChatMessageWindow = () => {
         return messages && messages.length > 0 ? renderWithMessages() : renderWithOutMessages();
+        //return renderWithOutMessages();
     }
 
     const renderWithMessages = () => {
@@ -30,9 +32,9 @@ export const ChatMsgWin: React.FC = () => {
     const renderWithOutMessages = () => {
         return (
             <div className={'chatMsgWin_con'}>
-                <span ref={msgBottomSpanRef}/>
+                <LinearProgress />
             </div>
         )}
 
-    return renderChatMessageWindow();
+    return renderChatMessageWindow()
 }

@@ -1,12 +1,11 @@
 .chatApp {
   &_con {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     width: fit-content;
     border-radius: 15px;
     margin: 10px 0 10px 0;
     overflow: auto;
-
   }
 }

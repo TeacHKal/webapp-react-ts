@@ -16,7 +16,7 @@ interface IProps{
 
 export const ChatApp: React.FC<IProps> = (props) => {
     const user = firebase.getUser();
-
+    
     const {height, width, fontSize} = props
     const style={
         height,

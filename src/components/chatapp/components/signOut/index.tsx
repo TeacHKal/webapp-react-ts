@@ -3,7 +3,8 @@ import firebase from "../../../../modules/firebase";
 import {Button} from "@material-ui/core";
 
 export const SignOut: React.FC = () => {
-
+    const user = firebase.getUser();
+    console.log('user', user);
     return (
         <div>
             <Button
@@ -11,6 +12,7 @@ export const SignOut: React.FC = () => {
                 variant="contained"
                 color="secondary"
                 size="small"
+                disabled={!user}
             >
                 Sign Out
             </Button>
