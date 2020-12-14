@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import {ChatMessage} from "../chatMessage";
 import './index.scss';
 import firebase from '../../../../modules/firebase';
-import {CircularProgress, LinearProgress} from "@material-ui/core";
+import { LinearProgress} from "@material-ui/core";
 
 export const ChatMsgWin: React.FC = () => {
     const messages = firebase.MessageArr();
