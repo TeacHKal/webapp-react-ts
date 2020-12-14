@@ -1,8 +1,11 @@
 import React, {useRef, useState} from 'react';
 import SendIcon from '@material-ui/icons/Send';
-import './index.scss'
 import {CircularProgress, TextField} from "@material-ui/core";
+import {filterBadWords} from '../../../../modules/filterBadWords';
 import  firebase from '../../../../modules/firebase';
+import './index.scss'
+
+
 
 export const MessageComposer: React.FC = () => {
     const [inputMessage, setInputMessage] = useState('');
@@ -18,7 +21,7 @@ export const MessageComposer: React.FC = () => {
         // @ts-ignore
         const { uid, photoURL } = firebase.getCurrentUser();
         const messageData = {
-            text: inputMessage,
+            text: filterBadWords(inputMessage),
             createdAt: firebase.serverTimestamp(),
             uid,
             photoURL
