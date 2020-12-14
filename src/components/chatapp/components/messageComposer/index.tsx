@@ -1,14 +1,15 @@
 import React, {useRef, useState} from 'react';
-import firebase from "firebase";
+//import firebase from "firebase";
 import SendIcon from '@material-ui/icons/Send';
 import './index.scss'
 import {TextField} from "@material-ui/core";
+import  firebase from '../../../../modules/firebase';
 
 export const MessageComposer: React.FC = () => {
     const [inputMessage, setInputMessage] = useState('');
-    const firestore = firebase.firestore();
-    const messagesRef = firestore.collection('messages');
-    const auth = firebase.auth();
+    // const firestore = firebase.firestore();
+    // const messagesRef = firestore.collection('messages');
+    // const auth = firebase.auth();
 
     const sendIconRef = useRef();
 
@@ -17,15 +18,19 @@ export const MessageComposer: React.FC = () => {
         if(inputMessage === "") return;
 
         // @ts-ignore
-        const { uid, photoURL } = auth.currentUser;
-        await messagesRef.add({
+        const { uid, photoURL } = firebase.getCurrentUser();
+        const messageData = {
             text: inputMessage,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdAt: firebase.serverTimestamp(),
             uid,
             photoURL
-        })
+        }
 
-        setInputMessage('');
+        await firebase.sendMessage(messageData)
+            .then((s) => setInputMessage(''))
+            .catch((e) => console.log('error'));
+
+
     }
 
     const sendIconColor = () => {
@@ -35,8 +40,8 @@ export const MessageComposer: React.FC = () => {
 
     const onEnterKeyPress = (e: any) => {
         if(e.key === 'Enter'){
-            const msgResponse = sendMessage(e);
-            console.log("msgResponse", msgResponse);
+            // @ts-ignore
+            sendMessage(e);
         }
     }
 

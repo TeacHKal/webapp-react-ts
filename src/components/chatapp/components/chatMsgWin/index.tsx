@@ -1,15 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import {ChatMessage} from "../chatMessage";
-import {useCollectionData} from "react-firebase-hooks/firestore";
-import firebase from "firebase";
-import './index.scss'
-
+import './index.scss';
+import firebase from '../../../../modules/firebase';
 
 export const ChatMsgWin: React.FC = () => {
-    const firestore = firebase.firestore();
-    const messagesRef = firestore.collection('messages');
-    const query = messagesRef.orderBy('createdAt', 'desc').limit(30);
-    const [messages] = useCollectionData(query, {idField: 'id'}); // Hook
+    const messages = firebase.MessageArr();
 
     const msgBottomSpanRef = useRef<HTMLHeadingElement>(null);
 

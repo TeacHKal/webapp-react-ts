@@ -1,5 +1,5 @@
 import React from "react";
-import firebase from "firebase";
+import firebase from "../../../../modules/firebase";
 import { Avatar } from '../../../avatar';
 import './index.scss';
 
@@ -17,7 +17,6 @@ export const ChatMessage: React.FC<IProps> = (props) => {
 
     const { text, uid, photoURL } = props.message;
     const auth = firebase.auth();
-
 
     // @ts-ignore
     const messageType = uid === auth.currentUser.uid ? "sent" : "received";
