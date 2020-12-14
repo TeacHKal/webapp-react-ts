@@ -11,18 +11,28 @@ export const ChatMsgWin: React.FC = () => {
     useEffect(() => {
         msgBottomSpanRef.current!.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
+
     const renderChatMessageWindow = () => {
+        return messages && messages.length > 0 ? renderWithMessages() : renderWithOutMessages();
+    }
+
+    const renderWithMessages = () => {
         return(
             <div className={'chatMsgWin_con'}>{messages && messages.reverse().map(msg => {
                 // @ts-ignore
                 return <ChatMessage key={msg.id} message={msg}/>
-                })}
-            <span ref={msgBottomSpanRef}/>
+            })}
+                <span ref={msgBottomSpanRef}/>
             </div>
         );
     }
 
-    return(
-        <div>{renderChatMessageWindow()}</div>
-    );
+    const renderWithOutMessages = () => {
+        return (
+            <div className={'chatMsgWin_con'}>
+                <span ref={msgBottomSpanRef}/>
+            </div>
+        )}
+
+    return renderChatMessageWindow();
 }

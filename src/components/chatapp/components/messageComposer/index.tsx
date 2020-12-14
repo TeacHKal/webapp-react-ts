@@ -1,21 +1,19 @@
 import React, {useRef, useState} from 'react';
-//import firebase from "firebase";
 import SendIcon from '@material-ui/icons/Send';
 import './index.scss'
-import {TextField} from "@material-ui/core";
+import {CircularProgress, TextField} from "@material-ui/core";
 import  firebase from '../../../../modules/firebase';
 
 export const MessageComposer: React.FC = () => {
     const [inputMessage, setInputMessage] = useState('');
-    // const firestore = firebase.firestore();
-    // const messagesRef = firestore.collection('messages');
-    // const auth = firebase.auth();
+    const [sendingMessage, setSendingMessage] = useState(false);
 
     const sendIconRef = useRef();
 
     const sendMessage = async (e: any) => {
         e.preventDefault();
         if(inputMessage === "") return;
+        setSendingMessage(true);
 
         // @ts-ignore
         const { uid, photoURL } = firebase.getCurrentUser();
@@ -27,10 +25,11 @@ export const MessageComposer: React.FC = () => {
         }
 
         await firebase.sendMessage(messageData)
-            .then((s) => setInputMessage(''))
+            .then((s) => {
+                setInputMessage('');
+                setSendingMessage(false);
+            })
             .catch((e) => console.log('error'));
-
-
     }
 
     const sendIconColor = () => {
@@ -43,6 +42,22 @@ export const MessageComposer: React.FC = () => {
             // @ts-ignore
             sendMessage(e);
         }
+    }
+    const renderSendIcon = () => {
+        return(
+            <SendIcon
+                onClick={(e) => sendMessage(e)}
+                color={'inherit'}
+                style={{color: sendIconColor()}}
+                innerRef={sendIconRef}
+            />
+        )
+    }
+
+    const renderLoadingIcon = () => {
+        return(
+            <CircularProgress size={25}/>
+        );
     }
 
     return(
@@ -59,12 +74,7 @@ export const MessageComposer: React.FC = () => {
                 fullWidth={true}
             />
             <div className={'messageComposer_sendIcon'}>
-            <SendIcon
-                onClick={(e) => sendMessage(e)}
-                color={'inherit'}
-                style={{color: sendIconColor()}}
-                innerRef={sendIconRef}
-            />
+                { sendingMessage ? renderLoadingIcon() : renderSendIcon()}
             </div>
         </div>
     );

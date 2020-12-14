@@ -2,7 +2,7 @@
   &_con {
     display: flex;
     flex-direction: column;
-
+    padding: 1% 2% 1% 5%;
   }
 
   &_msg {
@@ -10,18 +10,16 @@
     flex-direction: row;
     justify-content: center;
     color: black;
-    max-width: 350px;
-    border-radius: 15px;
-    margin: 5px 0 5px 0;
-    font-size: 20px;
   }
 
   &_text {
     overflow-wrap: anywhere;
     margin: 0 5px 2px 5px;
+    font-size: medium;
     border-radius: 10px;
     padding: 2px 5px;
     text-align: left;
+    align-self: center;
   }
 
   &_avatar {
