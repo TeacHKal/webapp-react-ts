@@ -1,4 +1,4 @@
-import React, {RefObject, useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import { SignIn } from "./components/signIn";
 import firebase from "../../modules/firebase";
 import { ChatHeader } from "./components/chatHeader";
@@ -15,8 +15,8 @@ interface IProps{
 
 export const ChatApp: React.FC<IProps> = (props) => {
     const [isSingingIn, setIsSingingIn] = useState(false);
-    const userHook = firebase.getUser();
     const chatMsgWinRef = useRef<any>(null);
+    const userHook = firebase.getUser();
 
     const {height, width, fontSize} = props
     const style={
@@ -38,14 +38,14 @@ export const ChatApp: React.FC<IProps> = (props) => {
     }
 
     const renderChatRoom = () => {
-        return(
+        return (
             <div style={style} className={'chatApp_con'}>
-                { <ChatHeader/> }
-                { renderChatMsgWin() }
-                { <MessageComposer
+                {<ChatHeader/>}
+                {renderChatMsgWin()}
+                {<MessageComposer
                     loader={isSingingIn}
                     onShiftEnter={(): any => onComposerShiftEnter()}
-                /> }
+                />}
             </div>
         )
     }
