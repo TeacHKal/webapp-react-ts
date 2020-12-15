@@ -12,7 +12,7 @@ interface IProps {
 export const ChatMsgWin: React.FC<IProps> = forwardRef((props, ref) => {
     const { loading } = props;
     useImperativeHandle(ref, () => ({
-        slideToBottom,
+        slideToBottomTimeOut,
     }));
 
     const messages = firebase.MessageArr();
@@ -24,6 +24,10 @@ export const ChatMsgWin: React.FC<IProps> = forwardRef((props, ref) => {
 
     const slideToBottom = () => {
         msgBottomSpanRef.current && msgBottomSpanRef.current.scrollIntoView({ behavior: "smooth" });
+
+    }
+    const slideToBottomTimeOut = () => {
+        setTimeout(() => slideToBottom() , 1);
     }
 
     const renderChatMessageWindow = () => {

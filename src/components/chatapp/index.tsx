@@ -34,7 +34,7 @@ export const ChatApp: React.FC<IProps> = (props) => {
     }
 
     const onComposerShiftEnter = () => {
-        chatMsgWinRef && chatMsgWinRef.current && chatMsgWinRef.current.slideToBottom();
+        chatMsgWinRef && chatMsgWinRef.current && chatMsgWinRef.current.slideToBottomTimeOut();
     }
 
     const renderChatRoom = () => {
