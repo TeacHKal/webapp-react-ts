@@ -1,13 +1,15 @@
 import React from "react";
-import firebase from "../../../../modules/firebase";
 import {Button} from "@material-ui/core";
 
-export const SignIn: React.FC = () => {
+interface IProps {
+    onClick: () => void;
+}
 
+export const SignIn: React.FC<IProps> = (props) => {
     return (
         <div>
             <Button
-                onClick={() => firebase.signInWithGoogle()}
+                onClick={() => props.onClick()}
                 variant="contained"
                 color="primary"
                 size="small"

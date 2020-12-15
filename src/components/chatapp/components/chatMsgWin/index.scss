@@ -19,8 +19,11 @@
     ::-webkit-scrollbar-track {
       background: #bbbbbb;
     }
-  }
 
+    &_hidden{
+      overflow: hidden;
+    }
+  }
 
 
 }

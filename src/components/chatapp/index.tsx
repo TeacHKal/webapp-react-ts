@@ -1,11 +1,10 @@
-import React from "react";
-import firebase from "../../modules/firebase";
+import React, {RefObject, useEffect, useRef, useState} from "react";
 import { SignIn } from "./components/signIn";
-
+import firebase from "../../modules/firebase";
+import { ChatHeader } from "./components/chatHeader";
+import { ChatMsgWin } from "./components/chatMsgWin";
+import { MessageComposer } from "./components/messageComposer";
 import "./index.scss";
-import {ChatHeader} from "./components/chatHeader";
-import {ChatMsgWin} from "./components/chatMsgWin";
-import {MessageComposer} from "./components/messageComposer";
 import backgroundImage from "./resourses/images/chatAppBackground.png";
 
 interface IProps{
@@ -15,8 +14,10 @@ interface IProps{
 }
 
 export const ChatApp: React.FC<IProps> = (props) => {
-    const user = firebase.getUser();
-    
+    const [isSingingIn, setIsSingingIn] = useState(false);
+    const userHook = firebase.getUser();
+    const chatMsgWinRef = useRef<any>(null);
+
     const {height, width, fontSize} = props
     const style={
         height,
@@ -25,25 +26,38 @@ export const ChatApp: React.FC<IProps> = (props) => {
         backgroundImage: `url(${backgroundImage})`
     }
 
+    const onSignInClick = () => {
+        setIsSingingIn(true);
+        firebase.signInWithGoogle()
+            .then(() => setIsSingingIn(false))
+            .catch();
+    }
+
+    const onComposerShiftEnter = () => {
+        chatMsgWinRef && chatMsgWinRef.current && chatMsgWinRef.current.slideToBottom();
+    }
+
     const renderChatRoom = () => {
         return(
             <div style={style} className={'chatApp_con'}>
                 { <ChatHeader/> }
-                { <ChatMsgWin/> }
-                { <MessageComposer/> }
+                { renderChatMsgWin() }
+                { <MessageComposer
+                    loader={isSingingIn}
+                    onShiftEnter={(): any => onComposerShiftEnter()}
+                /> }
             </div>
         )
     }
 
-    const renderChatRoomNullScreen = () => {
+    const renderChatMsgWin = () => {
         return (
-            <div style={style} className={'chatApp_con'}>
-                { <ChatHeader/> }
-                { <SignIn /> }
-                { <MessageComposer/> }
-            </div>)
+            isSingingIn || userHook ?
+                <ChatMsgWin loading={isSingingIn} ref={chatMsgWinRef}/>
+                : <SignIn onClick={() => onSignInClick()}/>
+        );
     }
 
-    return user ? renderChatRoom() : renderChatRoomNullScreen();
+    return renderChatRoom();
 };
 

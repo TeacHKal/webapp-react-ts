@@ -5,16 +5,19 @@ import {filterBadWords} from '../../../../modules/filterBadWords';
 import  firebase from '../../../../modules/firebase';
 import './index.scss'
 
+interface IProps {
+    loader?: boolean,
+    onShiftEnter: () => {},
+}
 
-
-export const MessageComposer: React.FC = () => {
+export const MessageComposer: React.FC<IProps> = (props) => {
+    const { loader, onShiftEnter } = props;
     const [inputMessage, setInputMessage] = useState('');
     const [sendingMessage, setSendingMessage] = useState(false);
 
     const sendIconRef = useRef();
 
     const sendMessage = async (e: any) => {
-        e.preventDefault();
         if(inputMessage === "") return;
         setSendingMessage(true);
 
@@ -41,10 +44,14 @@ export const MessageComposer: React.FC = () => {
     }
 
     const onEnterKeyPress = (e: any) => {
-        if(e.key === 'Enter'){
-            // @ts-ignore
-            sendMessage(e);
+        if(!e.shiftKey && e.key === 'Enter'){
+                e.preventDefault();
+                sendMessage(e);
         }
+        if(e.shiftKey && e.key === 'Enter'){
+            onShiftEnter();
+        }
+
     }
     const renderSendIcon = () => {
         return(
@@ -66,19 +73,20 @@ export const MessageComposer: React.FC = () => {
     return (
         <div className={'messageComposer_con'}>
             <div className={'messageComposer_sendingLinearProg'}>
-                { sendingMessage ? <LinearProgress /> : ''}
+                { sendingMessage || loader? <LinearProgress /> : ''}
             </div>
             <div className={'messageComposer_comp'}>
                 <TextField
                     id="standard-multiline-flexible"
                     label="Message"
-                    rowsMax="3"
+                    rowsMax={3}
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     placeholder={"Type a message..."}
                     onKeyPress={(e) => onEnterKeyPress(e)}
                     margin={'none'}
                     fullWidth={true}
+                    multiline
                 />
                 <div className={'messageComposer_sendIcon'}>
                     {sendingMessage ? renderLoadingIcon() : renderSendIcon()}

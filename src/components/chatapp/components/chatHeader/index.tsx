@@ -6,7 +6,6 @@ import {Avatar} from "../../../avatar";
 
 export const ChatHeader: React.FC = () => {
     const user = firebase.getUser();
-    console.log('USER', user);
     const photoUrl = user ? user.photoURL : '';
     return(
             <div className={'chatHeader_con'}>

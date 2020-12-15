@@ -1,21 +1,33 @@
-import React, {useEffect, useRef} from 'react';
-import {ChatMessage} from "../chatMessage";
+import React, { useEffect, useRef, forwardRef, useImperativeHandle, useState } from 'react';
+import { ChatMessage } from "../chatMessage";
 import './index.scss';
 import firebase from '../../../../modules/firebase';
-import { LinearProgress} from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 
-export const ChatMsgWin: React.FC = () => {
+interface IProps {
+    loading: boolean,
+    ref: any,
+}
+
+export const ChatMsgWin: React.FC<IProps> = forwardRef((props, ref) => {
+    const { loading } = props;
+    useImperativeHandle(ref, () => ({
+        slideToBottom,
+    }));
+
     const messages = firebase.MessageArr();
-
     const msgBottomSpanRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-        msgBottomSpanRef.current && msgBottomSpanRef.current!.scrollIntoView({ behavior: 'smooth' });
+        slideToBottom();
     }, [messages]);
 
+    const slideToBottom = () => {
+        msgBottomSpanRef.current && msgBottomSpanRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
     const renderChatMessageWindow = () => {
-        return messages && messages.length > 0 ? renderWithMessages() : renderWithOutMessages();
-        //return renderWithOutMessages();
+        return !loading && messages && messages.length > 0 ? renderWithMessages() : renderWithOutMessages();
     }
 
     const renderWithMessages = () => {
@@ -31,10 +43,10 @@ export const ChatMsgWin: React.FC = () => {
 
     const renderWithOutMessages = () => {
         return (
-            <div className={'chatMsgWin_con'}>
-                <LinearProgress />
+            <div className={'chatMsgWin_con_hidden'}>
+                <CircularProgress disableShrink={true}/>
             </div>
         )}
 
     return renderChatMessageWindow()
-}
+})
