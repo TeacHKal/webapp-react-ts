@@ -10,11 +10,11 @@ firebase.initializeApp({ ...firebaseConfig })
 const firestore = firebase.firestore();
 
 const messagesRef = firestore.collection('messages');
-const query = messagesRef.orderBy('createdAt', 'desc').limit(30);
 
 const auth = () => firebase.auth();
 
-const MessageArr = () => {
+const MessageArr = (msgLimit: number = 30) => {
+    const query = messagesRef.orderBy('createdAt', 'desc').limit(msgLimit);
     const  [messages] = useCollectionData(query, {idField: 'id'}); // Hook
     return messages;
 }
