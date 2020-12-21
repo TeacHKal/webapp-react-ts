@@ -45,6 +45,7 @@ export const ChatApp: React.FC<IProps> = (props) => {
                 {<MessageComposer
                     loader={isSingingIn}
                     onShiftEnter={(): any => onComposerShiftEnter()}
+                    isInputDisabled={!userHook}
                 />}
             </div>
         )

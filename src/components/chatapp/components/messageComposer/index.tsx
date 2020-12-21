@@ -7,10 +7,11 @@ import './index.scss'
 interface IProps {
     loader?: boolean,
     onShiftEnter: () => {},
+    isInputDisabled?: boolean,
 }
 
 export const MessageComposer: React.FC<IProps> = (props) => {
-    const { loader, onShiftEnter } = props;
+    const { loader, onShiftEnter, isInputDisabled } = props;
     const [inputMessage, setInputMessage] = useState('');
     const [sendingMessage, setSendingMessage] = useState(false);
 
@@ -69,6 +70,13 @@ export const MessageComposer: React.FC<IProps> = (props) => {
         );
     }
 
+    const inputLabel = (isInputDisabled: any) => {
+        if(isInputDisabled){
+            return "Please, log in..."
+        }
+        return "Message";
+    }
+
     return (
         <div className={'messageComposer_con'}>
             <div className={'messageComposer_sendingLinearProg'}>
@@ -77,7 +85,7 @@ export const MessageComposer: React.FC<IProps> = (props) => {
             <div className={'messageComposer_comp'}>
                 <TextField
                     id="standard-multiline-flexible"
-                    label="Message"
+                    label={inputLabel(isInputDisabled)}
                     rowsMax={3}
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
@@ -86,6 +94,7 @@ export const MessageComposer: React.FC<IProps> = (props) => {
                     margin={'none'}
                     fullWidth={true}
                     multiline
+                    disabled={isInputDisabled}
                 />
                 <div className={'messageComposer_sendIcon'}>
                     {sendingMessage ? renderLoadingIcon() : renderSendIcon()}
