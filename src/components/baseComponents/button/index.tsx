@@ -13,16 +13,16 @@ interface IProps {
 type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 
 export const Button: React.FC<IProps> = (props) => {
-    const { text, onClick, color, size, disabled, variant } = props;
+
     return (
         <Btn
             onClick={() => props.onClick()}
-            variant={variant}
-            color={color}
-            size={size}
-            disabled={disabled}
+            variant={props.variant}
+            color={props.color}
+            size={props.size}
+            disabled={props.disabled}
         >
-            {text}
+            {props.text}
         </Btn>
     );
 

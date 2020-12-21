@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle, useState } from 'react';
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { ChatMessage } from "../chatMessage";
 import './index.scss';
 import firebase from '../../../../modules/firebase';
