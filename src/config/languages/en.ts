@@ -4,6 +4,8 @@ export const strings = {
         message: "Message",
         pleaseLogIn: "Please, log in...",
         chatApp: "Chat App",
+        signIn: "Sing In",
+        signOut: "Sign Out",
     }
 
 }

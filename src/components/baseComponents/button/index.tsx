@@ -4,41 +4,23 @@ import {Button as Btn} from "@material-ui/core";
 interface IProps {
     text: string,
     onClick: () => void,
-    color?: color,
-    size?: size,
-    variant?: variant,
+    disabled?: boolean,
+    color?: Color,
+    size?: 'small' | 'medium' | 'large',
+    variant?: 'text' | 'outlined' | 'contained',
 }
 
-type color = {
-    // default: default
-    primary: 'primary',
-    secondary: 'secondary',
-    inherit: 'inherit',
-}
+type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 
-type size = {
-    // default: medium
-    small: 'small',
-    medium: 'medium',
-    large: 'large',
-}
-
-type variant = {
-    // default: text
-    outlined: 'outlined',
-    contained: 'contained',
-}
-
-
-
-export const Button: React.FC<IProps> = (props) =>{
-    const { text } = props;
+export const Button: React.FC<IProps> = (props) => {
+    const { text, onClick, color, size, disabled, variant } = props;
     return (
         <Btn
             onClick={() => props.onClick()}
-            variant="contained"
-            color="primary"
-            size="small"
+            variant={variant}
+            color={color}
+            size={size}
+            disabled={disabled}
         >
             {text}
         </Btn>
