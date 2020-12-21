@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import SendIcon from '@material-ui/icons/Send';
 import {CircularProgress, LinearProgress, TextField} from "@material-ui/core";
 import  firebase from '../../../../modules/firebase';
+import language from '../../../../config/languages';
 import './index.scss'
 
 interface IProps {
@@ -14,6 +15,7 @@ export const MessageComposer: React.FC<IProps> = (props) => {
     const { loader, onShiftEnter, isInputDisabled } = props;
     const [inputMessage, setInputMessage] = useState('');
     const [sendingMessage, setSendingMessage] = useState(false);
+    const strings = language.strings.chatApp;
 
     const sendIconRef = useRef();
 
@@ -35,7 +37,7 @@ export const MessageComposer: React.FC<IProps> = (props) => {
                 setInputMessage('');
                 setSendingMessage(false);
             })
-            .catch((e) => console.log('error'));
+            .catch((e) => console.log('error', e));
     }
 
     const sendIconColor = () => {
@@ -72,9 +74,9 @@ export const MessageComposer: React.FC<IProps> = (props) => {
 
     const inputLabel = (isInputDisabled: any) => {
         if(isInputDisabled){
-            return "Please, log in..."
+            return strings.pleaseLogIn; // strings.language.chatApp
         }
-        return "Message";
+        return strings.message;
     }
 
     return (
@@ -89,7 +91,7 @@ export const MessageComposer: React.FC<IProps> = (props) => {
                     rowsMax={3}
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
-                    placeholder={"Type a message..."}
+                    placeholder={strings.typeMessage}
                     onKeyPress={(e) => onEnterKeyPress(e)}
                     margin={'none'}
                     fullWidth={true}
