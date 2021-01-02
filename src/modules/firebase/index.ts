@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import 'firebase/firestore';
 import 'firebase/auth';
