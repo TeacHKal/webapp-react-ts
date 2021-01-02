@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 import { ChatApp} from "./components/chatapp";
+import { Header } from './screens/header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-
+      <div className="App-body">
+        <Header/>
         <ChatApp width={350} height={600}/>
-      </header>
+      </div>
     </div>
   );
 }
