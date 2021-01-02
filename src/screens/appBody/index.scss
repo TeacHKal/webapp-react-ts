@@ -1,0 +1,9 @@
+.appBody {
+  &_con{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: -webkit-fill-available;
+    background-color: red;
+  }
+}

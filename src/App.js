@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import { ChatApp} from "./components/chatapp";
-import { Header } from './screens/header';
-import { Footer } from './screens/footer';
+import { AppBody } from "./screens/appBody";
+import {AppHeader} from "./screens/appHeader";
+import {AppFooter} from "./screens/appFooter";
 
 function App() {
   return (
     <div className="App">
       <div className="App-body">
-        <Header />
-        <ChatApp width={300} height={550}/>
-        <Footer />
+          <AppHeader />
+          <AppBody />
+          <AppFooter />
       </div>
     </div>
   );

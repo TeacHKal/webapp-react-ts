@@ -16,7 +16,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         grow: {
-            flexGrow: 1,
+            //flexGrow: 1,
             width: '100%',
         },
         menuButton: {
