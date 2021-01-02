@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.scss';
-import {ChatApp} from "../../components/chatapp";
+import RouterSwitch from "../../components/RouterSwitch";
 
 export const AppMainCenter: React.FC = () => {
 
     return(
         <div className={'appMainCenter_con'}>
-            <p>Center</p>
+            <RouterSwitch/>
         </div>
     );
 }
