@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { AppBody } from "./screens/appBody";
-import {AppHeader} from "./screens/appHeader";
-import {AppFooter} from "./screens/appFooter";
+import { AppBody } from "./ui/screens/appBody";
+import {AppHeader} from "./ui/screens/appHeader";
+import {AppFooter} from "./ui/screens/appFooter";
 
 function App() {
   return (

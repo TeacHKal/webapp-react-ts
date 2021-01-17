@@ -35,10 +35,6 @@ const RockPaperScissors: React.FC = () => {
             text: strings.PLAYER_VS_COMP,
             type: GAME_TYPE.PLAYER_VS_COMP,
         },
-        {
-            text: "assdf",
-            type: "asdf",
-        }
     ];
     const onGameScoreChange = (gameData: any) => {
         const data = {
