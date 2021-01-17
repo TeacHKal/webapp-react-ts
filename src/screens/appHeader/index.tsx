@@ -1,9 +1,12 @@
 import React from 'react';
-import { PrimaryAppBar } from '../../components/primaryAppBar';
+import NavMenu from "../../components/navMenu";
+import './index.scss';
 
 export const AppHeader: React.FC = () => {
 
     return(
-        <PrimaryAppBar />
+        <div className={"header_con"}>
+            <NavMenu />
+        </div>
     );
 }
