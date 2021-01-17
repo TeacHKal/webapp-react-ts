@@ -1,0 +1,11 @@
+version: '2.4'
+services:
+  webapp:
+    container_name: chat-app
+    command: npm start
+    ports:
+    - 3000:80
+    - 3001:3000
+    build:
+      context: .
+      dockerfile: Dockerfile
