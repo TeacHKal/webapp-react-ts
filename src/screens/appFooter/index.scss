@@ -5,8 +5,15 @@
     justify-content: center;
     //width: -webkit-fill-available;
 
-    &_div_underContstruct{
+    .underConstruction_div{
       padding: 10px;
+      display: flex;
+    }
+    .underConstruction_icon{
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
     }
   }
+
 }
