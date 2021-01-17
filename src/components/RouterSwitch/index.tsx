@@ -6,6 +6,9 @@ import {RockPaperScissorsScreen} from "../../ui/screens/rockPaperScissorsScreen"
 function RouterSwitch() {
     return (
         <Switch>
+            <Route exact path="/">
+
+            </Route>
             <Route exact path="/chatapp">
                 <ChatApp height={550}/>
             </Route>

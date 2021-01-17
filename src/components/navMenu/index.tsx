@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {todolistItemAdd} from "../../store/toDoList";
+import {useSelector} from "react-redux";
 
 interface props extends RouteComponentProps {}
 
@@ -24,6 +26,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 const NavMenu: React.FC<props> = (props) => {
     const classes = useStyles();
     const [value, setValue] = React.useState('/');
+
+    const currentRouterPath= useSelector((state: any) => state.router.location.pathname);
+    
+    useEffect(() => {
+        setValue('/test');
+        setValue(currentRouterPath);
+    }, [])
 
     const goToRouterPath = (path: string) => {
         props.history.push(path);
