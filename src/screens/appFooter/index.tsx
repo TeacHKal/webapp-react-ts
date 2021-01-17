@@ -5,7 +5,9 @@ export const AppFooter: React.FC = () => {
 
     return(
         <div className={'footer_con'}>
-            FOOTER
+            <div className={'div_underContstruct'}>
+                SITE UNDER CONSTRUCT
+            </div>
         </div>
     );
 }

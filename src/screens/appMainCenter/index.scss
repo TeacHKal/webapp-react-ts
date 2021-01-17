@@ -1,6 +1,8 @@
 .appMainCenter {
   &_con{
-    background-color: blue;
+   // background-color: blue;
     width: inherit;
+    display: flex;
+    justify-content: center;
   }
 }
