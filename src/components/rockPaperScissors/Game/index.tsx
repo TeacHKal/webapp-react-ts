@@ -12,8 +12,8 @@ const GAME_TYPE = {
 
 interface IProps {
     gameType: string
-    onChangeGameType: (type: string) => void;
-    onScoreChange: (gameData: object) => void;
+    onChangeGameType?: (type: string) => void;
+    onScoreChange?: (gameData: object) => void;
     initialScores?: {
         leftPlayerWinCount: number,
         rightPlayerWinCount: number,
@@ -50,7 +50,7 @@ export const Game: React.FC<IProps> = ( props ) =>{
             rightPlayerWinCount: playerScores.rightPlayerWinCount,
         };
         if(!pageLoadFirstTime){
-            props.onScoreChange( gameData);
+            props.onScoreChange && props.onScoreChange( gameData);
         }else {
             setPageLoadFirstTime(false);
         }
@@ -69,7 +69,7 @@ export const Game: React.FC<IProps> = ( props ) =>{
 
     const goToMainMenu = () => {
         restartGame();
-        props.onChangeGameType(GAME_TYPE.NONE);
+        props.onChangeGameType && props.onChangeGameType(GAME_TYPE.NONE);
     };
 
     const computerPick = () => {
@@ -174,7 +174,7 @@ export const Game: React.FC<IProps> = ( props ) =>{
         setWinText('');
         setPlayerScores({ leftPlayerWinCount: 0, rightPlayerWinCount: 0 })
         setStateWhoPlayText();
-        props.onChangeGameType(props.gameType);
+        props.onChangeGameType && props.onChangeGameType(props.gameType);
     };
 
     const renderGameButtons = () => {
