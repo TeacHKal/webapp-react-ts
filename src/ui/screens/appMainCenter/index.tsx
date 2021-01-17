@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import RouterSwitch from "../../components/RouterSwitch";
+import RouterSwitch from "../../../components/RouterSwitch";
 
 export const AppMainCenter: React.FC = () => {
 

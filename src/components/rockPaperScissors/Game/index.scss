@@ -1,0 +1,128 @@
+@import "../../../ui/constants/colors";
+.rpsGame {
+//background-color: $DARK_1;
+
+
+  &_image_con {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  &_imageDiv {
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    border-radius: 50px;
+    border: 3px solid #ffab23;
+    cursor: pointer;
+  }
+
+  &_imageDiv:hover {
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    border-radius: 50px;
+    border: 3px solid greenyellow;
+    cursor: pointer;
+  }
+
+  &_img {
+    height: 100px;
+    width: 70px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_textCon {
+    min-height: 40px;
+  }
+
+  &_gameTitle {
+    margin-bottom: 45px;
+    color: #ffab23;
+  }
+
+  .btn_blue:hover {
+    background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    background-color: #476e9e;
+  }
+
+  .game_btn {
+    border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 19px;
+    padding: 12px 37px;
+    text-decoration: none;
+
+    margin: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .btn_green:hover {
+    background: linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+    background-color: #5cbf2a;
+  }
+
+  .game_btn:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .btn_green {
+    box-shadow: 0px 0px 0px 2px #3ec718;
+    background: linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+    background-color: #44c767;
+    border: 1px solid #18ab29;
+    text-shadow: 0px 1px 0px #2f6627;
+  }
+
+  .btn_blue {
+    border: 1px solid #4e6096;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    text-shadow: 0px 1px 0px #283966;
+  }
+
+  &_btn_settings {
+    margin-top: 20px;
+  }
+
+  &_selection_btn {
+    margin: 10px;
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background: #ffec64 linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+    border-radius: 6px;
+    border: 1px solid #ffaa22;
+    display: inline-block;
+    cursor: pointer;
+    color: #333333;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffee66;
+  }
+
+  &_selection_btn:hover {
+    background: #ffab23 linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+  }
+
+  &_selection_btn:active {
+    position: relative;
+    top: 1px;
+  }
+
+  svg:hover {
+    fill: red;
+  }
+
+  img:hover {
+    fill: red;
+  }
+}

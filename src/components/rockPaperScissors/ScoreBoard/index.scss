@@ -1,0 +1,50 @@
+.scoreBoard {
+
+  &_con {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    position: relative;
+    justify-content: center;
+  }
+
+  &_result {
+    margin: 10px;
+  }
+
+  &_dotDivider {
+    margin: 10px;
+  }
+
+  &_result_con {
+    border: #ffab23 3px solid;
+    flex-direction: row;
+    display: flex;
+    border-radius: 10px;
+  }
+
+  &_text {
+    width: 150px;
+    padding: 15px;
+  }
+
+  &_scTextLeft {
+    text-align: end;
+  }
+
+  &_scTextRight {
+    text-align: start;
+  }
+
+  &_clr-green {
+    color: greenyellow;
+  }
+
+  &_clr-yellow {
+    color: yellow;
+  }
+
+  &_clr-red {
+    color: red;
+  }
+}

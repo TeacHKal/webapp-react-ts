@@ -1,0 +1,13 @@
+@import "../../ui/constants/colors";
+
+.rps{
+  &_con{
+    background-color: $DARK_REACT;
+    color: $WHITE;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    height: inherit;
+    align-items: center;
+  }
+}

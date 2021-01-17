@@ -1,0 +1,40 @@
+.selection {
+  &_con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &_btn {
+    margin: 10px;
+    box-shadow: 0 1px 0 0 #fff6af;
+    background: #ffec64 linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+    border-radius: 6px;
+    border: 1px solid #ffaa22;
+    display: inline-block;
+    cursor: pointer;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffee66;
+  }
+
+  &_btn:hover {
+    background: #ffab23 linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+  }
+
+  &_btn:active {
+    position: relative;
+    top: 1px;
+  }
+
+}
+
+
+
+
+
