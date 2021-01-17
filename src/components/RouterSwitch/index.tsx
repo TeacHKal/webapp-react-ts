@@ -6,7 +6,10 @@ function RouterSwitch() {
     return (
         <Switch>
             <Route exact path="/chatapp">
-                <ChatApp />
+                <ChatApp height={550}/>
+            </Route>
+            <Route exact path="/">
+
             </Route>
         </Switch>
     );
