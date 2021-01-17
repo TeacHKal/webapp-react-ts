@@ -10,7 +10,7 @@ export const AppFooter: React.FC = () => {
                 <div className={'underConstruction_icon'}>
                     <WarningIcon color="error" />
                 </div>
-                SITE UNDER CONSTRUCT
+                SITE UNDER CONSTRUCTION
                 <div className={'underConstruction_icon'}>
                     <WarningIcon color="error" />
                 </div>
