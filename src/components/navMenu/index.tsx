@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {todolistItemAdd} from "../../store/toDoList";
 import {useSelector} from "react-redux";
 
 interface props extends RouteComponentProps {}
@@ -28,11 +27,10 @@ const NavMenu: React.FC<props> = (props) => {
     const [value, setValue] = React.useState('/');
 
     const currentRouterPath= useSelector((state: any) => state.router.location.pathname);
-    
+
     useEffect(() => {
-        setValue('/test');
         setValue(currentRouterPath);
-    }, [])
+    }, [currentRouterPath])
 
     const goToRouterPath = (path: string) => {
         props.history.push(path);

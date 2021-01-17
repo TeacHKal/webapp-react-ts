@@ -18,7 +18,7 @@ export const Selection: React.FC<IProps> = ({data, onSelectionChange}) => {
         return (
             _.map(data, (item: any, key: number) => {
                 return (
-                    <div className={'selection_btn-main'}>
+                    <div className={'selection_btn-main'} key={key}>
                         <Button
                             text={item.text}
                             onClick={() => onSelectionChange(item.type)}

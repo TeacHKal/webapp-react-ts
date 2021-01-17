@@ -32,8 +32,6 @@ const RockPaperScissors: React.FC = () => {
         },
     ];
 
-    console.log('gameT', gameType);
-
     return(
         <div className={"rps_con"}>
             {gameType === GAME_TYPE.NONE &&

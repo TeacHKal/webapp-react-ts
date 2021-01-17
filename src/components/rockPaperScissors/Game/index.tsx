@@ -39,9 +39,9 @@ export const Game: React.FC<IProps> = ( props ) =>{
     const [ whoPlayText, setWhoPlayText ] = useState('');
     const [ pageLoadFirstTime, setPageLoadFirstTime ] = useState(true);
 
-    useEffect(() => {
-        setStateWhoPlayText();
-    }, []);
+    // useEffect(() => {
+    //     setStateWhoPlayText();
+    // }, []);
 
     useEffect(() => {
         const gameData = {
@@ -54,9 +54,7 @@ export const Game: React.FC<IProps> = ( props ) =>{
         }else {
             setPageLoadFirstTime(false);
         }
-    }, [playerScores.leftPlayerWinCount, playerScores.rightPlayerWinCount]);
-
-
+    }, [playerScores.leftPlayerWinCount, playerScores.rightPlayerWinCount, props, pageLoadFirstTime]);
 
     const setStateWhoPlayText = () => {
         if(props.gameType === GAME_TYPE.PLAYER_VS_PLAYER){
