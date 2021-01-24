@@ -1,7 +1,8 @@
-import logger from './logger';
+import {logger as loggerMiddleware} from './logger';
 import api from './api';
 
-export const middlewares = {
-    logger: logger({description: "Console Logger:"}),
-    api,
-}
+const logger = loggerMiddleware({description: "Console Logger:"});
+export const middlewares = [
+    logger,
+    api
+]
