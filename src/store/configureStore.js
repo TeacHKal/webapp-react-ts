@@ -5,6 +5,9 @@ import {middlewares} from '../middleware';
 
 export const history = createBrowserHistory();
 
+
+
+
 export default function () {
     return configureStore({
         reducer: rootReducer(history),
