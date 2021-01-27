@@ -1,14 +1,14 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import {todolistItemAdd, getUnDoneTodolistItems, todolistItemDone, loadTodolist} from "../store/toDoList";
-import configureStore from "../store/configureStore"
+import { createStore } from "../store/createStore"
 
 describe("todolistSlice", () => {
     let store;
     let fakeAxios;
 
     beforeEach(() => {
-        store = configureStore();
+        store = createStore();
         fakeAxios = new MockAdapter(axios);
     });
 

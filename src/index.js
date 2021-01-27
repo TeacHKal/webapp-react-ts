@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {ConnectedRouter} from "connected-react-router";
-import { Provider } from "react-redux";
+import {Provider, useDispatch} from "react-redux";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import configureStore, { history } from "./store/configureStore";
+import configureStore, { history } from "./store/index";
 import './index.css';
+import {createAction} from "typesafe-actions";
 
 const store = configureStore();
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,12 +1,15 @@
 import React from 'react';
 import './index.scss';
+import {useDispatch} from "react-redux";
+import {increase} from "../../features/counter/actions";
 
 interface IProps {}
 
 export const Test: React.FC<IProps> = () => {
 
+    const dispatch = useDispatch();
     const onBtnClick = () => {
-        console.log('btn click');
+        dispatch(increase);
     }
     return(
         <div className={'test_con'}>
