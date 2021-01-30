@@ -24,16 +24,11 @@ export const saveTodosAsync = createAsyncAction(
 //export const pingPong = () => ({ type: 'PING' });
 //export const pingPong = createAction(`${prefix}PING_PONG`);
 
-export const pingPong = createAction(`${prefix}PING_PONG`, (title: string) => ({
-  id: cuid(),
-  title,
-}))<Todo>();
-
+//export const pingPong = createAction(`${prefix}PING_PONG`);
 // export const PING = 'PING';
-// export const pingPong = (payload = {}) => ({
-//   type: PING,
-//   payload,
-// });
+export const pingPong = () => ({
+  type: `${prefix}PING_PONG`,
+});
 
 export const NO_OP = {
   type: 'rnd',

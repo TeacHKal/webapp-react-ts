@@ -10,7 +10,8 @@ export const Test: React.FC<IProps> = () => {
 
 
     const onBtnClick = () => {
-        dispatch(pingPong('lalal'));
+        //dispatch(pingPong());
+        dispatch(loadTodosAsync.request());
     }
 
     return(

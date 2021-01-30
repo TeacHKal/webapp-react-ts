@@ -22,10 +22,10 @@ export const todos = createReducer([
     console.log('teach', 'TODO ACTION');
     return [...state, action.payload]
   })
-    .handleAction(pingPong, (state, action) => {
-      console.log('teach', 'pingPong');
-      return [...state, action.payload]
-    })
+    // .handleAction(pingPong, (state, action) => {
+    //   console.log('teach', 'pingPong');
+    //   return [...state, action.payload]
+    // })
   .handleAction(removeTodo, (state, action) =>
     state.filter(i => i.id !== action.payload)
   );

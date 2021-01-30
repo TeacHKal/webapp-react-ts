@@ -1,9 +1,6 @@
-import {RootAction, RootState, Services, isActionOf, action} from 'typesafe-actions';
-import {Epic} from "redux-observable";
-import {from, Observable, EMPTY, of} from "rxjs";
-
-import {catchError, filter, map, mergeMap, switchMap, tap, } from "rxjs/operators";
-import {increase, multiple, double, triple} from "./actions";
+import { RootAction, RootState, Services, isActionOf, action } from 'typesafe-actions';
+import { Epic } from "redux-observable";
+import { map } from "rxjs/operators";
 import 'rxjs/add/operator/mapTo';
 
 export const NO_OP = { type: 'NO_OP' };
@@ -32,5 +29,5 @@ export const pingEpic: Epic<RootAction, RootAction, RootState, Services>
     action$.ofType('PING')
         //.delay(1000) // Asynchronously wait 1000ms then continue
         .pipe(map((x) => {
-            return {type: 'heh'}
+            return { type: 'heh' }
         }))

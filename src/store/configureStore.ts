@@ -44,14 +44,13 @@ const initialState = {};
 
 export const store = configureStore({
     reducer: rootReducer(history),
-    middleware: [
-        ...getDefaultMiddleware({
+    middleware:
+        getDefaultMiddleware({
             thunk: false // or true if you want to use thunks
-        }),
-        epicMiddleware
-    ],
+        })
+        .concat(epicMiddleware),
     preloadedState: initialState,
-    enhancers: [enhancer]
+    enhancers: [ enhancer ]
 });
 
 epicMiddleware.run(rootEpic);
