@@ -3,6 +3,7 @@ import { Todo } from 'MyModels';
 let todos: Todo[] = [
   { id: '0', title: `Hustle Everyday :)` },
   { id: '1', title: `Learn Something New` },
+  { id: '2', title: `Howdy Howdy` },
 ];
 
 export function loadSnapshot(): Promise<Todo[]> {
@@ -13,11 +14,11 @@ export function loadSnapshot(): Promise<Todo[]> {
   });
 }
 
-// export function saveSnapshot(data: Todo[]): Promise<undefined> {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       todos = data;
-//       resolve();
-//     }, 500);
-//   });
-// }
+export function saveSnapshot(data: Todo[]): Promise<undefined> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      todos = data;
+      //resolve();
+    }, 500);
+  });
+}

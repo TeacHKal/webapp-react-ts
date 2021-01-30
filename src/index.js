@@ -4,11 +4,11 @@ import {ConnectedRouter} from "connected-react-router";
 import {Provider, useDispatch} from "react-redux";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import configureStore, { history } from "./store/index";
-import './index.css';
-import {createAction} from "typesafe-actions";
+import configureStore, { history} from "./store/configureStore";
 
-const store = configureStore();
+import './index.css';
+
+const store = configureStore;
 
 
 ReactDOM.render(

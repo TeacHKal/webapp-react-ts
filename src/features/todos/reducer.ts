@@ -2,7 +2,7 @@ import { Todo } from 'MyModels';
 import { combineReducers } from 'redux';
 import { createReducer } from 'typesafe-actions';
 
-import { loadTodosAsync, addTodo, removeTodo } from './actions';
+import {loadTodosAsync, addTodo, removeTodo, pingPong} from './actions';
 
 export const isLoadingTodos = createReducer(false as boolean)
   .handleAction([loadTodosAsync.request], (state, action) => true)
@@ -18,7 +18,14 @@ export const todos = createReducer([
   },
 ] as Todo[])
   .handleAction(loadTodosAsync.success, (state, action) => action.payload)
-  .handleAction(addTodo, (state, action) => [...state, action.payload])
+  .handleAction(addTodo, (state, action) => {
+    console.log('teach', 'TODO ACTION');
+    return [...state, action.payload]
+  })
+    .handleAction(pingPong, (state, action) => {
+      console.log('teach', 'pingPong');
+      return [...state, action.payload]
+    })
   .handleAction(removeTodo, (state, action) =>
     state.filter(i => i.id !== action.payload)
   );

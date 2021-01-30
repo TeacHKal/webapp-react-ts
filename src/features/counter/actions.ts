@@ -6,3 +6,5 @@ export const multiple = createAction('COUNTER_MULTIPLE')<number>();
 export const double = createAction('COUNTER_DOUBLE')<number>();
 export const triple = createAction('COUNTER_TRIPLE')<number>();
 
+export const ping = () => ({ type: 'PING' });
+

@@ -1,13 +1,13 @@
 import { Todo } from 'MyModels';
 import cuid from 'cuid';
 import { createAction, createAsyncAction } from 'typesafe-actions';
-
-export const addTodo = createAction('ADD_TODO', (title: string) => ({
+const prefix = '##todo/';
+export const addTodo = createAction(`${prefix}ADD`, (title: string) => ({
   id: cuid(),
   title,
 }))<Todo>();
 
-export const removeTodo = createAction('REMOVE_TODO')<string>();
+export const removeTodo = createAction(`${prefix}REMOVE`)<string>();
 
 export const loadTodosAsync = createAsyncAction(
   'LOAD_TODOS_REQUEST',
@@ -20,3 +20,24 @@ export const saveTodosAsync = createAsyncAction(
   'SAVE_TODOS_SUCCESS',
   'SAVE_TODOS_FAILURE'
 )<undefined, undefined, string>();
+
+//export const pingPong = () => ({ type: 'PING' });
+//export const pingPong = createAction(`${prefix}PING_PONG`);
+
+export const pingPong = createAction(`${prefix}PING_PONG`, (title: string) => ({
+  id: cuid(),
+  title,
+}))<Todo>();
+
+// export const PING = 'PING';
+// export const pingPong = (payload = {}) => ({
+//   type: PING,
+//   payload,
+// });
+
+export const NO_OP = {
+  type: 'rnd',
+  //payload: {},
+}
+
+
