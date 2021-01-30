@@ -1,13 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
-import { createEpicMiddleware, Epic  } from 'redux-observable';
+import { applyMiddleware } from 'redux';
+import { createEpicMiddleware, Epic } from 'redux-observable';
 import { RootAction, RootState, Services } from 'typesafe-actions';
 import { createBrowserHistory } from 'history';
+import logger from 'redux-logger';
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+
 import { composeEnhancers } from './utils';
 import rootReducer from './root-reducer';
 import rootEpic from './root-epic';
 import services from '../services';
-import {configureStore, getDefaultMiddleware, AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {delay, filter, map} from "rxjs/operators";
 
 export const history = createBrowserHistory();
 
@@ -24,8 +25,19 @@ export type MyEpic = Epic<RootAction, RootAction, RootState, Services>;
 
 // configure middlewares
 const middlewares = [epicMiddleware];
+
+
+//  Redux middleware only for development and no in production
+//middlewares.push(logger_redux());
+// if (process.env.NODE_ENV === `development`) {
+//     const { logger } = require(`redux-logger`);
+//
+//     middlewares.push(logger);
+// }
+//middlewares.push(logger);
+
 // compose enhancers
-const enhancer = composeEnhancers(applyMiddleware(...middlewares));
+const enhancer = composeEnhancers(applyMiddleware(...middlewares, logger));
 
 // rehydrate state on app start
 const initialState = {};

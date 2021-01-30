@@ -8,13 +8,11 @@ interface IProps {}
 export const Test: React.FC<IProps> = () => {
     const dispatch = useDispatch();
 
-    //dispatch(addTodo('New Task' ));
 
     const onBtnClick = () => {
-        //dispatch(pingPong('New Task' ));
         dispatch(pingPong('lalal'));
-        //dispatch(loadTodosAsync.request);
     }
+
     return(
         <div className={'test_con'}>
             <p>TEST SCREEN</p>
