@@ -20,7 +20,7 @@ export const loadTodosEpic: Epic<RootAction, RootAction, RootState, Services>
 
 export const pingEpic: Epic<RootAction, RootAction, RootState, Services>
     = (action$, state$, { api }) =>
-    action$.ofType('##todo/PING_PONG')
+    action$.ofType('COUNTER_MULTIPLE')
         .pipe(delay( 3000 )) // Asynchronously wait x ms then continue
         .pipe(map(() => {
             return {type: 'haha'}

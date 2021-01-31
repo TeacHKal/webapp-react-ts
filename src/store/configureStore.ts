@@ -1,43 +1,34 @@
-import { applyMiddleware } from 'redux';
+import {
+    AnyAction,
+    configureStore,
+    getDefaultMiddleware, applyMiddleware
+} from "@reduxjs/toolkit";
 import { createEpicMiddleware, Epic } from 'redux-observable';
-import { RootAction, RootState, Services } from 'typesafe-actions';
 import { createBrowserHistory } from 'history';
 import logger from 'redux-logger';
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { compose } from 'redux';
 
-import { composeEnhancers } from './utils';
 import rootReducer from './root-reducer';
 import rootEpic from './root-epic';
 import services from '../services';
 
+
 export const history = createBrowserHistory();
 
-export const epicMiddleware = createEpicMiddleware<
-    RootAction,
-    RootAction,
-    RootState,
-    Services
-    >({
+export type MyState = ReturnType<typeof rootReducer>;
+export type MyEpic = Epic<AnyAction, AnyAction, MyState>;
+
+const epicMiddleware = createEpicMiddleware<
+    AnyAction,
+    AnyAction,
+    MyState>
+({
     dependencies: services,
 });
 
-export type MyEpic = Epic<RootAction, RootAction, RootState, Services>;
+const middlewares = [ epicMiddleware ];
+const enhancer = compose(applyMiddleware(logger));
 
-// configure middlewares
-const middlewares = [epicMiddleware];
-
-
-//  Redux middleware only for development and no in production
-//middlewares.push(logger_redux());
-// if (process.env.NODE_ENV === `development`) {
-//     const { logger } = require(`redux-logger`);
-//
-//     middlewares.push(logger);
-// }
-//middlewares.push(logger);
-
-// compose enhancers
-const enhancer = composeEnhancers(applyMiddleware(...middlewares, logger));
 
 // rehydrate state on app start
 const initialState = {};
@@ -48,7 +39,7 @@ export const store = configureStore({
         getDefaultMiddleware({
             thunk: false // or true if you want to use thunks
         })
-        .concat(epicMiddleware),
+            .concat(epicMiddleware),
     preloadedState: initialState,
     enhancers: [ enhancer ]
 });

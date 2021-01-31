@@ -6,5 +6,5 @@ import * as counterEpics from '../features/counter/epics';
 
 export default combineEpics(
     ...Object.values(todosEpics),
-    //...Object.values(counterEpics),
+    ...Object.values(counterEpics),
 );

@@ -1,8 +1,7 @@
 import React from 'react';
 import './index.scss';
 import {useDispatch} from "react-redux";
-import {increase} from "../../features/counter/actions";
-import {addTodo, loadTodosAsync, pingPong} from "../../features/todos/actions";
+import { counterActions } from "../../features/counter";
 interface IProps {}
 
 export const Test: React.FC<IProps> = () => {
@@ -11,7 +10,8 @@ export const Test: React.FC<IProps> = () => {
 
     const onBtnClick = () => {
         //dispatch(pingPong());
-        dispatch(loadTodosAsync.request());
+        dispatch(counterActions.increment());
+        //dispatch(counterActions.multiple(2));
     }
 
     return(
