@@ -9,6 +9,7 @@ export const Test: React.FC<IProps> = () => {
 
     const onBtnClick = () => {
         dispatch(counterActions.increment());
+        dispatch(counterActions.pingPong());
     }
 
     return(

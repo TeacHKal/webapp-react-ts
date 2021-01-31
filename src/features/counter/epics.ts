@@ -1,53 +1,28 @@
-import { RootAction, RootState, Services, isActionOf, action } from 'typesafe-actions';
-import { Epic, ofType } from "redux-observable";
-import { catchError, delay, filter, map, mapTo, mergeMap, switchMap } from "rxjs/operators";
+import { filter, map, switchMap } from "rxjs/operators";
 import { from, Observable, of } from "rxjs";
 import { counterActions, counterReducer } from '../../features/counter';
 import { Action } from "@reduxjs/toolkit";
+import { MyEpic } from '../../store/configureStore';
 
-const { increment } = counterActions;
-export const incrementEpic: Epic<RootAction, RootAction, RootState, Services>
+const { increment, pingPong } = counterActions;
+
+export const increment1Epic: MyEpic
     = (action$: Observable<Action>, state$, { api }) =>
     action$.pipe(
         filter(increment.match),
-        switchMap(action => {
+        switchMap(action =>
             // @ts-ignore
-            return from(of(api.counter.increase(state$.value.counter.value))).pipe(
-                map((value: number) => {
-                        console.log('teachVVV', value);
-                        return counterReducer.saveValue(value);
-                    }
-                )
-            )
-        })
+            from(of(api.counter.increase(state$.value.counter.value)))
+                .pipe(map((value: number) => counterReducer.saveValue(value)))
+        )
     )
 
-// export const pingEpic: Epic<RootAction, RootAction, RootState, Services>
-//     = (action$, state$, { api }) =>
-//     action$.ofType('COUNTER_MULTIPLE')
-//         .pipe(delay( 6000 )) // Asynchronously wait x ms then continue
-//         .pipe(map(() => {
-//             return {type: 'haha'}
-//         }))
-
-//
-// export const increase1Epic: Epic<RootAction, RootAction, RootState, Services>
-//     = (action$, state$, { api }) =>
+// TODO Fix epic
+// export const pingEpic: MyEpic = (action$: Observable<Action>, state$, { api }) =>
 //     action$.pipe(
-//         filter(action => action.type === counterActions.increase.toString()),
-//         switchMap(action =>
-//             from(api.counter.increase(1)).pipe(
-//                 //of(console.log('teach', 2)),
-//                 map((value: number) =>counterReducer.saveValue(value))
-//             )
-//         )
+//         filter(pingPong.match)
+//             .pipe(() => of(delay(3000)))
+//             .pipe(map(() => {
+//                 return { type: 'haha' }
+//             })),
 //     )
-//
-// export const doubleEpic: Epic<RootAction, RootAction, RootState, Services>
-//     = (action$, state$, { api }) =>
-//     action$.pipe(
-//         filter(isActionOf(counterActions.double)),
-//         switchMap(action =>
-//             from(api.counter.double).pipe(
-//                 map(counterReducer.saveValue))))
-
