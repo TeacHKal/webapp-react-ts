@@ -21,18 +21,5 @@ export const saveTodosAsync = createAsyncAction(
   'SAVE_TODOS_FAILURE'
 )<undefined, undefined, string>();
 
-//export const pingPong = () => ({ type: 'PING' });
-//export const pingPong = createAction(`${prefix}PING_PONG`);
-
-//export const pingPong = createAction(`${prefix}PING_PONG`);
-// export const PING = 'PING';
-export const pingPong = () => ({
-  type: `${prefix}PING_PONG`,
-});
-
-export const NO_OP = {
-  type: 'rnd',
-  //payload: {},
-}
 
 
