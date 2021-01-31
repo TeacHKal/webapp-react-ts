@@ -7,14 +7,11 @@ import { createEpicMiddleware, Epic } from 'redux-observable';
 import { createBrowserHistory } from 'history';
 import logger from 'redux-logger';
 import { compose } from 'redux';
-
 import rootReducer from './root-reducer';
 import rootEpic from './root-epic';
 import services from '../services';
 
-
 export const history = createBrowserHistory();
-
 export type MyState = ReturnType<typeof rootReducer>;
 export type MyEpic = Epic<AnyAction, AnyAction, MyState>;
 
@@ -26,7 +23,6 @@ const epicMiddleware = createEpicMiddleware<
     dependencies: services,
 });
 
-const middlewares = [ epicMiddleware ];
 const enhancer = compose(applyMiddleware(logger));
 
 

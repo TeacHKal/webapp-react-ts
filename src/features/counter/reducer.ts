@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type CounterState = {
-  readonly value: number;
+    readonly value: number;
 };
 
 const initialState = {
@@ -16,21 +16,6 @@ const slice = createSlice({
             console.log('reducer action.payload', action.payload);
             state.value = action.payload;
         },
-        // decrement: (state, action) => {
-        //     state.value = state.value--;
-        // },
-        // increaseBy: (state, action) => {
-        //     state.value = state.value + action.payload;
-        // },
-        // multiple: (state, action) => {
-        //     state.value = state.value * action.payload;
-        // },
-        // double: (state, action) => {
-        //     state.value = state.value * 2;
-        // },
-        // triple: (state, action) => {
-        //     state.value = state.value * 3;
-        // }
     }
 })
 

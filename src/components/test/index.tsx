@@ -7,11 +7,8 @@ interface IProps {}
 export const Test: React.FC<IProps> = () => {
     const dispatch = useDispatch();
 
-
     const onBtnClick = () => {
-        //dispatch(pingPong());
         dispatch(counterActions.increment());
-        //dispatch(counterActions.multiple(2));
     }
 
     return(
