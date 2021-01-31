@@ -5,11 +5,12 @@ import {
 } from "@reduxjs/toolkit";
 import { createEpicMiddleware, Epic } from 'redux-observable';
 import { createBrowserHistory } from 'history';
-import logger from 'redux-logger';
 import { compose } from 'redux';
 import rootReducer from './root-reducer';
 import rootEpic from './root-epic';
 import services from '../services';
+
+const LOGGER_REDUX_ENABLE = true;
 
 export const history = createBrowserHistory();
 export type MyState = ReturnType<typeof rootReducer>;
@@ -23,7 +24,14 @@ const epicMiddleware = createEpicMiddleware<
     dependencies: services,
 });
 
-const enhancer = compose(applyMiddleware(logger));
+const enhancers: any = [];
+
+if (LOGGER_REDUX_ENABLE) {
+    const { logger } = require(`redux-logger`);
+    enhancers.push(logger);
+}
+
+const enhancer = compose(applyMiddleware(...enhancers));
 
 
 // rehydrate state on app start
