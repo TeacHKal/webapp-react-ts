@@ -4,7 +4,7 @@ import { counterActions, counterReducer } from '../../features/counter';
 import { Action } from "@reduxjs/toolkit";
 import { MyEpic } from '../../store/configureStore';
 
-const { increment, pingPong } = counterActions;
+const { increment } = counterActions;
 
 export const increment1Epic: MyEpic
     = (action$: Observable<Action>, state$, { api }) =>

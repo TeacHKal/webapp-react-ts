@@ -1,6 +1,5 @@
 //import { Counter }from 'MyModels';
-import { createAction, Action } from '@reduxjs/toolkit'
-
+import { createAction } from '@reduxjs/toolkit'
 
 export const increment = createAction('INCREMENT')
 export const multiple = createAction<number>('COUNTER_MULTIPLE');

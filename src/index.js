@@ -1,25 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {ConnectedRouter} from "connected-react-router";
-import {Provider, useDispatch} from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import { Provider } from "react-redux";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import configureStore, { history} from "./store/configureStore";
+import configureStore, {history} from "./store/configureStore";
 
 import './index.css';
 
 const store = configureStore;
 
 
+// React StrictMode is commented/uncommented,
+// because it's causing for react components to render twice.
+// So it is changed often to see how app is actually working
 ReactDOM.render(
-  //<React.StrictMode>
-      <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <App />
-          </ConnectedRouter>
-      </Provider>,
-  //</React.StrictMode>,
-  document.getElementById('root')
+    //<React.StrictMode>
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <App/>
+        </ConnectedRouter>
+    </Provider>,
+    //</React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

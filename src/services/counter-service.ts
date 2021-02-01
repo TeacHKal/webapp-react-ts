@@ -1,7 +1,4 @@
-import { Todo } from "MyModels";
-
 export const increase = (currentSum: number) => {
-    console.log('teach currentSum', currentSum);
     return currentSum + 1;
 }
 
@@ -25,9 +22,9 @@ export const increaseBy = (currentSum: number, increaseBy: number) => {
     return currentSum + increaseBy;
 }
 
+// Example with promises
 // export function increase(value: number): Promise<number> {
 //     return new Promise((resolve, reject) => {
-//         console.log('tttt', value);
 //         return value++;
 //     });
 // }
