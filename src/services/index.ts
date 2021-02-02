@@ -1,11 +1,12 @@
-import * as logger from './logger-service';
-import * as todos from './todos-api-client';
-import * as counter from './counter-service';
+import RequestService from "./api/RequestService";
+import TodosService from "./api/TodosService";
+import * as counter from "./counter-service";
+
+const RequestServiceInstance = new RequestService();
 
 export default {
-  logger,
-  api: {
-    todos,
-    counter,
-  },
-};
+    api: {
+        todosService: new TodosService(RequestServiceInstance),
+        counterService: counter,
+    },
+}

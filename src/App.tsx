@@ -5,6 +5,7 @@ import {AppHeader} from "./ui/screens/appHeader";
 import {AppFooter} from "./ui/screens/appFooter";
 
 function App() {
+    console.log('tag' || 'RequestService', 'item');
   return (
     <div className="App">
       <div className="App-body">

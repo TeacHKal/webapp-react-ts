@@ -1,35 +1,43 @@
-import { Todo } from 'MyModels';
-import { combineReducers } from 'redux';
-import { createReducer } from 'typesafe-actions';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Todo } from "MyModels";
 
-import { loadTodosAsync, addTodo, removeTodo } from './actions';
+export type TodosState = {
+    isLoading: boolean;
+    list: Array<Todo>;
+};
 
-export const isLoadingTodos = createReducer(false as boolean)
-    .handleAction([ loadTodosAsync.request ], (state, action) => true)
-    .handleAction(
-        [ loadTodosAsync.success, loadTodosAsync.failure ],
-        (state, action) => false
-    );
+const initialState = {
+    list: [
+        {id: 45, name: 'Go Ski', isComplete: false},
+        {id: 22, name: 'Watch a movie', isComplete: true},
+    ],
+    isLoading: false
+};
 
-export const todos = createReducer([
-    {
-        id: '0',
-        title: 'You can add new todos using the form or load saved snapshot...',
-    },
-] as Todo[])
-    .handleAction(loadTodosAsync.success, (state, action) => action.payload)
-    .handleAction(addTodo, (state, action) => {
-        console.log('teach', 'TODO ACTION');
-        return [ ...state, action.payload ]
-    })
-    .handleAction(removeTodo, (state, action) =>
-        state.filter(i => i.id !== action.payload)
-    );
+const slice = createSlice({
+    name: 'todos',
+    initialState,
+    reducers: {
+        getTodosRequest: (state) => {
+            state.isLoading = true;
+        },
+        getTodosSuccess: (state, action: PayloadAction<Array<Todo>>) => {
+            console.log('getTodosSuccess', action.payload);
+            state.list = action.payload;
+            state.isLoading = false;
 
-const todosReducer = combineReducers({
-    isLoadingTodos,
-    todos,
-});
+        },
+        getTodosFailure: (state) => {
+            state.isLoading = false;
+        },
+    }
+})
 
-export default todosReducer;
-export type TodosState = ReturnType<typeof todosReducer>;
+export const {
+    getTodosRequest,
+    getTodosSuccess,
+    getTodosFailure,
+} = slice.actions;
+
+export default slice.reducer;
+

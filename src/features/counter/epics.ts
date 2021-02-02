@@ -7,16 +7,17 @@ import { MyEpic } from '../../store/configureStore';
 const { increment } = counterActions;
 
 export const increment1Epic: MyEpic
-    = (action$: Observable<Action>, state$, { api }) =>
-    action$.pipe(
+    = (action$: Observable<Action>, state$, { api }) =>{
+    console.log('TEACH API', api)
+    return action$.pipe(
         filter(increment.match),
         switchMap(action =>
             // @ts-ignore
-            from(of(api.counter.increase(state$.value.counter.value)))
+            from(of(api.counterService.increase(state$.value.counter.value)))
                 .pipe(map((value: number) => counterReducer.saveValue(value)))
         )
     )
-
+}
 // TODO Fix epic
 // export const pingEpic: MyEpic = (action$: Observable<Action>, state$, { api }) =>
 //     action$.pipe(
