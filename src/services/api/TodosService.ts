@@ -11,8 +11,9 @@ export default class TodosService {
     getTodos() {
         return this.service
             .fetch$({
-                url: 'http://www.mocky.io/v2/5e5592ed31000033b7eb3930?mocky-delay=2000ms',
-                method: 'get'
+                //url: 'http://www.mocky.io/v2/5e5592ed31000033b7eb3930?mocky-delay=2000ms',
+                url: 'https://api.mocki.io/v1/94dc6645',
+                method: 'get',
             })
             .pipe(map((result: Array<Todo>) => {
                     return result

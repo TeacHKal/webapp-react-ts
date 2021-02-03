@@ -34,7 +34,6 @@ export default class RequestService {
         } = config;
         const headersBuild = {
             ...defaultHeaders,
-            dateToday: moment().format('YYYY-MM-DD HH:mm:ss'),
             ...headers,
         };
 

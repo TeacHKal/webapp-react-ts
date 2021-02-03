@@ -1,9 +1,9 @@
 //import { Todo } from 'MyModels';
 import { createAction } from "@reduxjs/toolkit";
 
-const prefix = '##todo/';
+const prefix = '#todos/';
 
-export const getTodos = createAction(`${prefix}GET_TODOS`);
+export const getTodosRequestAction = createAction(`${prefix}getTodosRequest`);
 
 
 

@@ -22,7 +22,6 @@ const slice = createSlice({
             state.isLoading = true;
         },
         getTodosSuccess: (state, action: PayloadAction<Array<Todo>>) => {
-            console.log('getTodosSuccess', action.payload);
             state.list = action.payload;
             state.isLoading = false;
 

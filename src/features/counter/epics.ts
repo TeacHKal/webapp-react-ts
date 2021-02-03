@@ -1,14 +1,14 @@
-import { filter, map, switchMap } from "rxjs/operators";
+import { delay, filter, map, switchMap } from "rxjs/operators";
 import { from, Observable, of } from "rxjs";
 import { counterActions, counterReducer } from '../../features/counter';
 import { Action } from "@reduxjs/toolkit";
 import { MyEpic } from '../../store/configureStore';
+import { pingPong } from "./actions";
 
 const { increment } = counterActions;
 
 export const increment1Epic: MyEpic
     = (action$: Observable<Action>, state$, { api }) =>{
-    console.log('TEACH API', api)
     return action$.pipe(
         filter(increment.match),
         switchMap(action =>
