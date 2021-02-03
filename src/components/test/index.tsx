@@ -10,8 +10,6 @@ export const Test: React.FC<IProps> = () => {
     const dispatch = useDispatch();
 
     const onBtnClick = () => {
-        //dispatch(counterActions.increment());
-        dispatch(counterActions.pingPong());
         dispatch(todosActions.getTodos());
     }
 

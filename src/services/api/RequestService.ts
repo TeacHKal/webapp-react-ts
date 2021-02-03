@@ -1,5 +1,5 @@
 import { defer, Observable, Observer } from "rxjs";
-import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken, Method } from "axios";
+import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken, Method } from "axios";
 import moment from "moment";
 
 // TODO have to change to the real host later
@@ -51,35 +51,36 @@ export default class RequestService {
                 cancelToken,
                 validateStatus,
             })
-            //.then((response: AxiosResponse) => Promise.resolve(response.data));
+            .then((response: AxiosResponse) => Promise.resolve(response.data));
     }
 
-    fetch$ = (config: any) => {
-        return defer(() =>
+    fetch$ = (config: RequestInfo) =>
+        defer(() =>
             new Observable((observer: any) => {
                 const source = Axios.CancelToken.source();
                 observer.add(() => {
                     source.cancel('Cancel Requested');
                 });
 
-                fetch({
+                this.fetch({
+                    // @ts-ignore
                     ...config,
                     cancelToken: source.token,
                 })
-                    .then(response => {
+                    .then((response: Response) => {
                         observer.next(response);
                         observer.complete();
                     })
-                    .catch(error => {
+                    .catch((error: AxiosError) => {
                         if (Axios.isCancel(error)) {
-                            console.log('RequestService Cancel error', error);
+                            console.log('RequestService Is Cancel', error.message);
                             observer.complete();
                         } else {
                             observer.error(error);
                         }
                     });
             }));
-    }
+
 }
 
 

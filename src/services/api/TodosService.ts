@@ -19,8 +19,13 @@ export default class TodosService {
         return this.service
             .fetch$({
                 url: 'http://www.mocky.io/v2/5e5592ed31000033b7eb3930?mocky-delay=2000ms',
+                method: 'get'
             })
-            .pipe(map((res: any) => res.data));
+            .pipe(map((result: any) => {
+                console.log('RESULT', result);
+                    return result.data
+                }
+            ));
     }
 
 

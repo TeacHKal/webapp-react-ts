@@ -12,9 +12,9 @@ export const getTodosEpic: MyEpic = (action$, state$, { api }) =>
         filter(getTodos.match),
         switchMap(() =>
             from(api.todosService.getTodos()).pipe(
-                map((payload: any) => getTodosSuccess(payload.data)),
+                map((payload: any) => getTodosSuccess(payload)),
                 catchError((message: string) => {
-                    console.log('getTodosEpic Error', message)
+                    console.log('getTodosEpic Error', message || message)
                     return of(getTodosFailure())})
             )
         )
