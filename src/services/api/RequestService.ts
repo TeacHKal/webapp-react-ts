@@ -54,7 +54,7 @@ export default class RequestService {
             .then((response: AxiosResponse) => Promise.resolve(response.data));
     }
 
-    fetch$ = (config: RequestInfo) =>
+    fetch$ = (config: AxiosRequestConfig) =>
         defer(() =>
             new Observable((observer: any) => {
                 const source = Axios.CancelToken.source();
@@ -63,7 +63,6 @@ export default class RequestService {
                 });
 
                 this.fetch({
-                    // @ts-ignore
                     ...config,
                     cancelToken: source.token,
                 })
