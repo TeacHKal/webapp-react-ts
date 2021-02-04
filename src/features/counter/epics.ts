@@ -1,14 +1,14 @@
-import { delay, filter, map, switchMap } from "rxjs/operators";
+import { filter, map, mapTo, switchMap } from "rxjs/operators";
 import { from, Observable, of } from "rxjs";
 import { counterActions, counterReducer } from '../../features/counter';
 import { Action } from "@reduxjs/toolkit";
 import { MyEpic } from '../../store/configureStore';
-import { pingPong } from "./actions";
+import { ofType } from "redux-observable";
 
 const { increment } = counterActions;
 
 export const increment1Epic: MyEpic
-    = (action$: Observable<Action>, state$, { api }) =>{
+    = (action$: Observable<Action>, state$, { api }) => {
     return action$.pipe(
         filter(increment.match),
         switchMap(action =>
@@ -19,11 +19,18 @@ export const increment1Epic: MyEpic
     )
 }
 // TODO Fix epic
-// export const pingEpic: MyEpic = (action$: Observable<Action>, state$, { api }) =>
-//     action$.pipe(
-//         filter(pingPong.match)
-//             .pipe(() => of(delay(3000)))
-//             .pipe(map(() => {
-//                 return { type: 'haha' }
-//             })),
-//     )
+export const pingEpic: any = (action$: Observable<Action>) =>
+    action$.pipe(
+        ofType("ping"),
+        mapTo({ type: "pong" }),
+    );
+
+
+//TEST
+// test("ping epic", () => {
+//     expect(
+//         pingEpic(of({ type: "ping" })).toPromise()
+//     ).resolves.toEqual(
+//         { type: "pong" }
+//     );
+// });

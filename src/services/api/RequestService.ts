@@ -1,6 +1,5 @@
-import { defer, Observable, Observer } from "rxjs";
-import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken, Method } from "axios";
-import moment from "moment";
+import { defer, Observable } from "rxjs";
+import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 
 // TODO have to change to the real host later
 const HOST = '';
