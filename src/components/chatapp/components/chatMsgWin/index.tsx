@@ -1,21 +1,23 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { ChatMessage } from "../chatMessage";
-import './index.scss';
-import firebase from '../../../../modules/firebase';
+import firebaseModule from '../../../../modules/FirebaseModule';
 import { CircularProgress } from "@material-ui/core";
+import './index.scss';
 
 interface IProps {
     loading: boolean,
     ref: any,
+    auth: any,
 }
 
 export const ChatMsgWin: React.FC<IProps> = forwardRef((props, ref) => {
     const { loading } = props;
+    const auth = firebaseModule.auth();
     useImperativeHandle(ref, () => ({
         slideToBottomTimeOut,
     }));
 
-    const messages = firebase.MessageArr();
+    const messages = firebaseModule.MessageArr();
     const msgBottomSpanRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
@@ -36,9 +38,12 @@ export const ChatMsgWin: React.FC<IProps> = forwardRef((props, ref) => {
 
     const renderWithMessages = () => {
         return(
-            <div className={'chatMsgWin_con'}>{messages && messages.reverse().map(msg => {
-                // @ts-ignore
-                return <ChatMessage key={msg.id} message={msg}/>
+            <div className={'chatMsgWin_con'}>{messages && messages.reverse().map((msg: any) => {
+                return <ChatMessage
+                    key={msg.id}
+                    message={msg}
+                    auth={auth}
+                />
             })}
                 <span ref={msgBottomSpanRef}/>
             </div>

@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import SendIcon from '@material-ui/icons/Send';
 import {CircularProgress, LinearProgress, TextField} from "@material-ui/core";
-import  firebase from '../../../../modules/firebase';
+import  firebase from '../../../../modules/FirebaseModule';
 import language from '../../../../config/languages';
 import './index.scss'
 

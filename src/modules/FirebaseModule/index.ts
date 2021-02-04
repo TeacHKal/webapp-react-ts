@@ -1,8 +1,8 @@
 import firebase from "firebase/app";
-import {useCollectionData} from "react-firebase-hooks/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import 'firebase/firestore';
 import 'firebase/auth';
-import {firebaseConfig} from "../../config/firebase";
+import { firebaseConfig } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 firebase.initializeApp({ ...firebaseConfig })
@@ -15,7 +15,7 @@ const auth = () => firebase.auth();
 
 const MessageArr = (msgLimit: number = 30) => {
     const query = messagesRef.orderBy('createdAt', 'desc').limit(msgLimit);
-    const  [messages] = useCollectionData(query, {idField: 'id'}); // Hook
+    const [ messages ] = useCollectionData(query, { idField: 'id' }); // Hook
     return messages;
 }
 
@@ -29,12 +29,12 @@ const signOut = () => {
 }
 
 const GetUser = () => {
-    const [user] = useAuthState(auth());
+    const [ user ] = useAuthState(auth());
     return user;
 }
 
-const sendMessage =  async (messageData: any) => {
-      return messagesRef.add({...messageData})
+const sendMessage = async (messageData: any) => {
+    return messagesRef.add({ ...messageData })
 }
 
 const serverTimestamp = () => {

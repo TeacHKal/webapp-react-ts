@@ -1,36 +1,42 @@
-import React, {useRef, useState} from "react";
-import firebase from "../../modules/firebase";
+import React, { useRef, useState } from "react";
+import firebaseModule from "../../modules/FirebaseModule";
 import { ChatHeader } from "./components/chatHeader";
 import { ChatMsgWin } from "./components/chatMsgWin";
 import { MessageComposer } from "./components/messageComposer";
-import "./index.scss";
 import backgroundImage from "./resourses/images/chatAppBackground.png";
-import {Button} from "../baseComponents/button";
+import { Button } from "../baseComponents/button";
 import language from '../../config/languages/';
+import "./index.scss";
 
-interface IProps{
+interface IProps {
     width?: number;
     height?: number;
     fontSize?: number;
 }
 
 export const ChatApp: React.FC<IProps> = (props) => {
-    const [isSingingIn, setIsSingingIn] = useState(false);
+    const [ isSingingIn, setIsSingingIn ] = useState(false);
     const chatMsgWinRef = useRef<any>(null);
-    const userHook = firebase.getUser();
     const strings = language.strings.chatApp;
+    const userHook = firebaseModule.getUser();
+    const user = firebaseModule.getUser();
+    const auth = firebaseModule.auth();
 
-    const {height, width, fontSize} = props
-    const style={
+    const { height, width, fontSize } = props
+    const style = {
         height,
         width,
         fontSize,
-        backgroundImage: `url(${backgroundImage})`
+        backgroundImage: `url(${ backgroundImage })`
+    }
+
+    const signOut = () => {
+        firebaseModule.signOut().then();
     }
 
     const onSignInClick = () => {
         setIsSingingIn(true);
-        firebase.signInWithGoogle()
+        firebaseModule.signInWithGoogle()
             .then(() => setIsSingingIn(false))
             .catch();
     }
@@ -43,8 +49,8 @@ export const ChatApp: React.FC<IProps> = (props) => {
         return (
             <div>
                 <Button
-                    text={strings.signIn}
-                    onClick={() => onSignInClick()}
+                    text={ strings.signIn }
+                    onClick={ () => onSignInClick() }
                     variant='contained'
                     color="primary"
                     size="small"
@@ -57,20 +63,27 @@ export const ChatApp: React.FC<IProps> = (props) => {
     const renderChatMsgWin = () => {
         return (
             isSingingIn || userHook ?
-                <ChatMsgWin loading={isSingingIn} ref={chatMsgWinRef}/>
+                <ChatMsgWin
+                    loading={ isSingingIn }
+                    ref={ chatMsgWinRef }
+                    auth={ auth  }
+                />
                 : renderSignInBtn()
         );
     }
 
     return (
-        <div style={style} className={'chatApp_con'}>
-            {<ChatHeader/>}
-            {renderChatMsgWin()}
-            {<MessageComposer
-                loader={isSingingIn}
-                onShiftEnter={(): any => onComposerShiftEnter()}
-                isInputDisabled={!userHook}
-            />}
+        <div style={ style } className={ 'chatApp_con' }>
+            { <ChatHeader
+                signOut={ () => signOut() }
+                user={ user }
+            /> }
+            { renderChatMsgWin() }
+            { <MessageComposer
+                loader={ isSingingIn }
+                onShiftEnter={ (): any => onComposerShiftEnter() }
+                isInputDisabled={ !userHook }
+            /> }
         </div>
     )
 };
