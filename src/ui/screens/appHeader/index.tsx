@@ -1,12 +1,12 @@
 import React from 'react';
-import NavMenu from "../../../components/navMenu";
+import { NavMenuV2 } from "../../../components/navMenuV2";
 import './index.scss';
 
 export const AppHeader: React.FC = () => {
 
     return(
         <div className={"header_con"}>
-            <NavMenu />
+            <NavMenuV2 />
         </div>
     );
 }
